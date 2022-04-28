@@ -12,7 +12,7 @@
             <ul id="accordion-menu">
                 <!-- ACCUEIL -->
                 <li>
-                    <a href="{{route('admin.home')}}" class="dropdown-toggle no-arrow">
+                    <a href="{{route('home')}}" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-house-1"></span><span class="mtext">Accueil</span>
                     </a>
                 </li>
@@ -20,16 +20,16 @@
                 @if (in_array(Auth::user()->role,['ADMIN','PROMOTEUR']))
                 <!-- STATIONS -->
 
-                <li class="dropdown @if(isRouteActivatedIn(["admin.radio.index", "admin.radio.create"])) show @endif">
+                <li class="dropdown @if(isRouteActivatedIn(["produit.index", "produit.create"])) show @endif">
                     <a href="javascript:;" class="dropdown-toggle"
-                       @if(isRouteActivatedIn(["admin.radio.index", "admin.radio.create"])) data-option="on" @endif>
-                        <span class="micon fa fa-podcast"></span><span class="mtext">Stations radio</span>
+                       @if(isRouteActivatedIn(["produit.index", "produit.create"])) data-option="on" @endif>
+                        <span class="micon fa fa-podcast"></span><span class="mtext">Produits</span>
                     </a>
-                    <ul class="submenu" @if(isRouteActivatedIn(["admin.radio.index", "admin.radio.create"])) style="display: block" @endif>
-                        <li><a href="{{route('admin.radio.index')}}">Liste</a></li>
+                    <ul class="submenu" @if(isRouteActivatedIn(["produit.index", "produit.create"])) style="display: block" @endif>
+                        <li><a href="{{route('produit.index')}}">Liste</a></li>
                 @if (in_array(Auth::user()->role,['ADMIN']))
 
-                        <li><a href="{{route('admin.radio.create')}}">Ajout</a></li>
+                        <li><a href="{{route('produit.create')}}">Ajout</a></li>
                 @endif
 
                     </ul>
@@ -41,22 +41,22 @@
                 @if (in_array(Auth::user()->role,['ADMIN']))
    <!-- COMMENTAIRE -->
                 <!-- ABONNES -->
-                <li class="@if(isRouteActivatedIn(["commentaire.index", "commentaire.index"])) active @endif">
-                    <a href="{{route('commentaire.index')}}" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-message"></span><span class="mtext">Commentaires</span>
+                <li class="@if(isRouteActivatedIn(["commande.index", "commande.index"])) active @endif">
+                    <a href="{{route('commande.index')}}" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-message"></span><span class="mtext">Commande</span>
                     </a>
                 </li>
 
 
                 <!-- CENTRE D'INTERET -->
-                <li class="dropdown @if(isRouteActivatedIn(["admin.centre-interet.index", "admin.centre-interet.create", "admin.centre-interet.edit"])) show @endif">
+                <li class="dropdown @if(isRouteActivatedIn(["categorie.index", "categorie.create", "categorie.edit"])) show @endif">
                     <a href="javascript:;" class="dropdown-toggle"
-                       @if(isRouteActivatedIn(["admin.centre-interet.index", "admin.centre-interet.create", "admin.centre-interet.edit"])) data-option="on" @endif>
-                        <span class="micon fa fa-shower"></span><span class="mtext">Centres d'intérêt</span>
+                       @if(isRouteActivatedIn(["categorie.index", "categorie.create", "categorie.edit"])) data-option="on" @endif>
+                        <span class="micon fa fa-shower"></span><span class="mtext">Categories</span>
                     </a>
-                    <ul class="submenu" @if(isRouteActivatedIn(["admin.centre-interet.index", "admin.centre-interet.create", "admin.centre-interet.edit"])) style="display: block" @endif>
-                        <li><a href="{{route('admin.centre-interet.index')}}">Liste</a></li>
-                        <li><a href="{{route('admin.centre-interet.create')}}">Ajout</a></li>
+                    <ul class="submenu" @if(isRouteActivatedIn(["categorie.index", "categorie.create", "categorie.edit"])) style="display: block" @endif>
+                        <li><a href="{{route('categorie.index')}}">Liste</a></li>
+                        <li><a href="{{route('categorie.create')}}">Ajout</a></li>
                     </ul>
                 </li>
 

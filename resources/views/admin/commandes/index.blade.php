@@ -2,7 +2,7 @@
 
 
 @section('title_page')
-    Liste des centres d'intérêts
+    Liste des Commandes
 @endsection
 
 @section('content')
@@ -11,19 +11,23 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Liste des centres d'intérêt</h4>
+                        <h4>Liste des commandes</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{url('')}}">Accueil</a></li>
-                            <li class="breadcrumb-item" aria-current="page">Liste des centres d'intérêt</li>
+                            <li class="breadcrumb-item" aria-current="page">Liste des commandes</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="col-md-6 col-sm-12 text-right">
-                    <a href="{{route('admin.centre-interet.create')}}" class="btn btn-sm app-bg-secondary text-white" >
+
+                    <a  title="ajouter" data-toggle="modal" data-target="#actionModalCommande" class="btn btn-sm btn-secondary text-white" >
                         <i class="fa fa-plus"></i> Ajouter
                     </a>
+
+                    @include('admin.commandes.modal-activeDesactive')
+
                 </div>
             </div>
         </div>
@@ -33,54 +37,55 @@
         <!-- Export Datatable start -->
         <div class="card-box mb-30">
             <div class="pd-20">
-                <h4 class="fw-bold h4">Liste des centres d'intérêt ({{sizeof($centres)}})</h4>
+                <h4 class="fw-bold h4">Liste des commamdes ({{sizeof($commandes)}})</h4>
             </div>
             <div class="pb-20">
                 <table class="table hover data-table nowrap">
-                    <thead class="app-bg-primary text-light">
+                    <thead class="app-bg-primary text-dark">
                     <tr class="fw-bold">
-                        <th class="table-plus">Image</th>
-                        <th class="table-plus">Couleur</th>
-                        <th class="table-plus">Nom</th>
-                        <th>Type</th>
+                        <th class="table-plus">Numero Commande</th>
+                        <th class="table-plus">Produits</th>
+                        <th class="table-plus">Quantite</th>
+                        <th class="table-plus">Statut</th>
+
+                        <th class="table-plus">Date</th>
                         <th class="datatable-nosort">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($centres as $centre)
+                    @foreach($commandes as $commande)
 
                     <tr>
                         <td class="table-plus">
-                            <img class="img-centre img-fluid" style="width: 50px;" src="{{asset('centreInteret/img/'.$centre->image)}}" alt="{{"image $centre->image"}}">
+                            {{ $commande->numero_commande }}
                         </td>
+
+                        <td class="table-plus">{{$commande->produit()->first()->nom}}</td>
                         <td class="table-plus">
-
-                            <input disabled type="color" value="{{$centre->color}}" class="form-control">
-
+                            {{ $commande->quantity }}
                         </td>
-                        <td class="table-plus">{{$centre->nom}}</td>
 
                         <td>
                             <span>
-                                {{getTypeCentreInteret()[$centre->type]}}
+                                {{ $commande->statut }}
                             </span>
                         </td>
                         <td>
-                            <a href="{{ route('admin.centre-interet.edit', ['centre' => $centre->id]) }}">
+                            <a href="">
                                 <i class="fa fa-pencil text-primary" title="Modifier"></i>
                             </a>
 
 
-                            <a href="" title="{{$centre->active ? 'Désactiver' : 'Activer'}}" data-toggle="modal" data-target="{{"#actionModalChangeStatusActive".$centre->id}}">
-                                <i class="fa fa-1x {{$centre->active ? 'fa-remove text-danger' :  'fa-check-circle text-success'}}"></i>
+                            <a href="" title="{{$commande->statut ? 'Désactiver' : 'Activer'}}" data-toggle="modal" data-target="{{"#actionModalChangestatutActive".$commande->id}}">
+                                <i class="fa fa-1x {{$commande->statut ? 'fa-remove text-danger' :  'fa-check-circle text-success'}}"></i>
                             </a>&nbsp;&nbsp;
 
 
                         </td>
                     </tr>
-
-                    @include('admin.centres-interet.modal-activeDesactive', ['centre' => $centre])
-
+{{--
+                    @include('admin.centres-interet.modal-activeDesactive', ['commande' => $commande])
+ --}}
                     @endforeach
                     </tbody>
                 </table>

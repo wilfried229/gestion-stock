@@ -16,6 +16,7 @@ class CreateCommandesTable extends Migration
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
             $table->string('numero_commande');
+            $table->integer('quantity');
             $table->unsignedInteger('produits_id');
             $table->boolean('statut')->default(false);
             $table->timestamps();

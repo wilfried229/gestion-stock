@@ -48,9 +48,9 @@
                     <tbody>
                     @foreach($users as $u)
                     <tr>
-                        <td class="table-plus">{{$u->nom . ' '. $u->prenom}}</td>
+                        <td class="table-plus">{{$u->name }}</td>
                         <td>{{$u->email}}</td>
-                        <td>{{displayUserRole($u->role)}}</td>
+                        <td></td>
                         <td>
                             <a href="{{ route('users.edit',$u->id) }}">
                                 <i class="fa fa-pencil app-text-black" title="Modifier"></i>

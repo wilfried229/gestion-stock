@@ -13,12 +13,12 @@ class Commandes extends Model
 
     protected $fillable = [
         'id',
-        'numero_commande',
+        'numero_commande','quantity',
         'produits_id',
     'statut'];
 
 
-    public function categorie(){
+    public function produits(){
         return $this->belongsTo(Produits::class,'produits_id','id');
     }
 }

@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProduitsRequest;
 use App\Http\Requests\UpdateProduitsRequest;
+use App\Models\Categories;
 use App\Models\Produits;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ProduitsController extends Controller
 {
@@ -30,7 +34,12 @@ class ProduitsController extends Controller
     public function create()
     {
         //
-        return view('admin.produits.create');
+        $produit = new Produits();
+
+        $categories = Categories::all();
+
+
+        return view('admin.produits.create',compact('produit','categories'));
 
     }
 
@@ -40,9 +49,29 @@ class ProduitsController extends Controller
      * @param  \App\Http\Requests\StoreProduitsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProduitsRequest $request)
+    public function store(Request $request)
     {
         //
+
+
+        try {
+
+            //dd($request->all());
+            $produit = Produits::create($request->all());
+
+        Session::flash('success', 'Produits enregister avec succes');
+        return redirect()->route('produit.index');
+        } catch (\Throwable $th) {
+            //throw $th;
+
+            Log::info($th->getMessage());
+
+        Session::flash('success', 'error');
+
+        return redirect()->route('produit.index');
+
+
+        }
 
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCommandesRequest;
 use App\Http\Requests\UpdateCommandesRequest;
 use App\Models\Commandes;
+use App\Models\Produits;
 
 class CommandesController extends Controller
 {
@@ -15,8 +16,11 @@ class CommandesController extends Controller
      */
     public function index()
     {
-        //
-        return view('admin.users.index');
+
+        $commandes  = Commandes::all();
+        $produits = Produits::all();
+
+        return view('admin.commandes.index',compact('commandes','produits'));
 
     }
 

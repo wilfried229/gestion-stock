@@ -14,7 +14,7 @@
                     <span class=fw-bold>Bienvenue</span> <div class="weight-600 font-30 app-text-primary">{{auth()->user()->name }}</div>
                 </h4>
                 <p class="font-18 max-width-600">
-                    Plateforme web d'administration de l'application mobile {{env('APP_NAME')}}
+                    Plateforme web de gestion de vente {{env('APP_NAME')}}
                 </p>
             </div>
         </div>

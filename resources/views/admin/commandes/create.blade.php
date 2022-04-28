@@ -25,7 +25,7 @@
 
         <div class="row mb-2">
             <div class="col-md-12 col-sm-12 text-left">
-                <a href="{{route('admin.centre-interet.index')}}" class="btn btn-sm bg-secondary text-white">
+                <a id="#actionModalCommande" href="{{route('admin.centre-interet.index')}}" class="btn btn-sm bg-secondary text-white">
                     <i class="fa fa-backward"></i> Retour
                 </a>
             </div>

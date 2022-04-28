@@ -42,4 +42,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public static $rules = [
+        'email' => 'required|email',
+        'name' => "required",
+        'role' => "required",
+    ];
+
+    public static $updateRules = [
+        'email' => 'required|email',
+        'name' => "required",
+    ];
+
+    public static $messageValidator = [
+        'email.required' => 'Adresse email requise',
+        'email.email' => 'Adresse email invalide',
+        'email.unique' => 'Cette adresse email est déjà utilisée',
+        'name.required' => "Le nom est requis",
+        'role.required' => "Le rôle est requis",
+    ];
 }
